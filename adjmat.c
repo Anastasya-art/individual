@@ -8,11 +8,14 @@
 #include <stdbool.h>
 #define MAX 20
 
-#pragma warning (push)
-#pragma warning (disable:6540)
+// #pragma warning (push)
+// #pragma warning (disable:6540)
 
 
 int inarr[MAX] = { 0 };
+
+void InsertionSort(int mass[], int );
+void printArray(int arr[], int );
 
 
 int main(void) {
@@ -43,6 +46,9 @@ int main(void) {
                 mass[i][j] = c - '0';
                 mass[j][i] = c - '0';
             }
+            else{
+                 mass[i][j] = 0;
+            }
           }
         }
 
@@ -60,6 +66,9 @@ int main(void) {
                 {
                     mass[i][j] = c - '0';
                     mass[j][i] = c - '0';
+                }
+                else{
+                     mass[i][j] = 0;
                 }
             }
         }
@@ -107,7 +116,7 @@ int main(void) {
 
 
 
-    printf("\nEnter edge like:a-b\n");
+    printf("\nEnter deleted edge like:a-b\n");
     char x;
     c = getchar();
     getchar();
@@ -134,21 +143,21 @@ int main(void) {
         }
 
         int q = 0;
-        bool checkc = false;
+        bool check = false;
 
         for (y = 0; !feof(file); y++)
         {
-            if ((w != '\n') && (checkc == false))
+            if ((w != '\n') && (check == false))
             {
                 buf[q] = w;
                 q++;
 
                 if ((w == c) || (w == x))
-                    checkc = true;
+                    check = true;
                     w = getc(file);
             }
 
-            if ((w == '\n') && (checkc == false))
+            if ((w == '\n') && (check == false))
             {
                 buf[q] = w;
                 q++;
@@ -161,15 +170,15 @@ int main(void) {
                     q = 0;
                     w = getc(file);
             }
-            if (checkc == true)
+            if (check == true)
             {
                 q = 0;
                 while (w != '\n')
                     w = getc(file);
-                    checkc = false;
+                    check = false;
             }
 
-      }
+        }
 
       ar[r] = '\0';
 
@@ -238,7 +247,7 @@ int main(void) {
     
     
     system("dot -Tpng graph1.dot -o graph1.png");
-	system("graph1.dot");
+    system("graph1.dot");
     system("graph1.png");
   
     return 0;
